@@ -1,6 +1,6 @@
 //Design File of Single Port Synchronous RAM
 module ram(data_out,data_in,read_en,write_en,address_loc,clk);
-  `include "parameters_ram.v"
+  `include "parameters_ram.sv"
    
   output logic [DATA_WIDTH-1:0]data_out;
   input  logic [DATA_WIDTH-1:0]data_in;
