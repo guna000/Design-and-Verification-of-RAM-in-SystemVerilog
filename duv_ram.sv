@@ -1,3 +1,4 @@
+//Design File of Single Port Synchronous RAM
 module ram(data_out,data_in,read_en,write_en,address_loc,clk);
   `include "parameters_ram.v"
    
@@ -7,7 +8,7 @@ module ram(data_out,data_in,read_en,write_en,address_loc,clk);
   input  logic [ADDR_BUS_WIDTH-1:0]address_loc;
   
   reg [DATA_WIDTH-1:0]dut_mem[0:MAX_MEM_LOC]; //memory
-always@(posedge clk)
+  always@(posedge clk)                                         //Read operation
 begin//A1
   if(read_en==1) begin 
                    $display("read operation @time %d",$time);
@@ -16,13 +17,13 @@ begin//A1
   
 end//A1
 
-always@(posedge clk)
+  always@(posedge clk)                                       //Write Operation
 begin//A2
   if(write_en==1) begin 
                     $display("write operation @time %d",$time);
                     dut_mem[address_loc]<=data_inbit;
   end 
-  if(read_en==0 && write_en==1) data_outbit<=8'dz;
+  if(read_en==0 && write_en==1) data_outbit<=8'dz;  
 end//A2
 endmodule
                
