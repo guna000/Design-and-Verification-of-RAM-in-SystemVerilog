@@ -1,28 +1,28 @@
-module ram(data_outbit,data_inbit,read_en,write_en,address_loc,clk);
+module ram(data_out,data_in,read_en,write_en,address_loc,clk);
   `include "parameters_ram.v"
    
-  output reg [DATA_WIDTH-1:0]data_outbit;
-  input [DATA_WIDTH-1:0]data_inbit;
-  input read_en,write_en,clk;
-  input [ADDR_BUS_WIDTH-1:0]address_loc;
+  output logic [DATA_WIDTH-1:0]data_out;
+  input  logic [DATA_WIDTH-1:0]data_in;
+  input  logic read_en,write_en,clk;
+  input  logic [ADDR_BUS_WIDTH-1:0]address_loc;
   
-  reg [DATA_WIDTH-1:0]dut_mem[0:MAX_MEM_LOC];
+  reg [DATA_WIDTH-1:0]dut_mem[0:MAX_MEM_LOC]; //memory
 always@(posedge clk)
-begin//A2
+begin//A1
   if(read_en==1) begin 
                    $display("read operation @time %d",$time);
                    data_outbit<=dut_mem[address_loc];
   end  
   
-end//A2
+end//A1
 
 always@(posedge clk)
-begin//A1
+begin//A2
   if(write_en==1) begin 
                     $display("write operation @time %d",$time);
                     dut_mem[address_loc]<=data_inbit;
   end 
   if(read_en==0 && write_en==1) data_outbit<=8'dz;
-end//A1
+end//A2
 endmodule
                
