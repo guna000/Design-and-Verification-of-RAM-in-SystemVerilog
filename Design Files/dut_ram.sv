@@ -24,11 +24,11 @@ module ram(data_outbit,data_inbit,read_en,write_en,address_loc,clk);
 					data_outbit<='hz;
     end 
     else if(read_en==1 && write_en==1) begin                //Invalid Condition									
-					$display("[DUV] Invalid Condition since this is a Single port RAM @%0d",$time);
-	end
-	else begin
-					$display("[DUV] Unknown state @%0d",$time);
-	end
+		    $display("[DUV] Invalid Condition since this is a Single port RAM @%0d",$time);
+    end
+    else begin
+       		    $display("[DUV] Unknown state @%0d",$time);
+    end
   end//A1
 
 endmodule
